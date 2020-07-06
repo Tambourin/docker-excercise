@@ -5,9 +5,10 @@ jobs:
       - checkout
       - heroku/install
       - run:
-          command: >
-            echo "The command above installs Heroku, the command below deploys.
-            What you do inbetween is up to you!"
+          command: |            
+          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
+          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push
+          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release
 version: 2.1
 orbs:
   docker: circleci/docker@1.0.0

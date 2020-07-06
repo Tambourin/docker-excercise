@@ -1,9 +1,10 @@
 
 version: 2.1
-orbs:
-  deploy-to-heroku: betterdoc/deploy-to-heroku@4.1.0
-workflows:
-  deploy:
-    jobs:
-      - deploy-to-heroku/docker-build-release:
-          app-name: "docker-excercise2"
+steps:
+  - run: 
+      command: >
+        docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY
+        registry.heroku.com
+  - run:
+      command: >
+        heroku container:push web --app docker-excercise2

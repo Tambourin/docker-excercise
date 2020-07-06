@@ -1,24 +1,9 @@
-jobs:
-  deploy:
-    executor: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - run:
-          command: |            
-          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
-          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push
-          HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release
+
 version: 2.1
 orbs:
-  docker: circleci/docker@1.0.0
-  heroku: circleci/heroku@1.0.1
+  deploy-to-heroku: betterdoc/deploy-to-heroku@4.1.0
 workflows:
   deploy:
     jobs:
-      - docker/publish:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-          tag: 'latest'
-  deploy-heroku:
-    jobs:
-      - deploy
+      - deploy-to-heroku/docker-build-release:
+          app-name: "docker-excercise2"

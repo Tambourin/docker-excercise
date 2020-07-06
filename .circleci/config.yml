@@ -1,10 +1,11 @@
-
 version: 2.1
-steps:
-  - run: 
-      command: >
-        docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY
-        registry.heroku.com
-  - run:
-      command: >
-        heroku container:push web --app docker-excercise2
+jobs:
+  build:
+    docker:
+      - image: alpine:3.7
+    steps:
+      - run:
+          name: The First Step
+          command: |
+            echo 'Hello World!'
+            echo 'This is the delivery pipeline'

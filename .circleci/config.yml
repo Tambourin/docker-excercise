@@ -11,3 +11,4 @@ jobs:
             echo 'Hello World!'            
             wget https://cli-assets.heroku.com/install.sh | sh
             heroku -v
+            ls -l

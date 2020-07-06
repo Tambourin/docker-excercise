@@ -1,24 +1,9 @@
-version: 2.1
-jobs:
-  deploy:
-    executor: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - run:
-          command: >
-            echo "The command above installs Heroku, the command below deploys.
-            What you do inbetween is up to you!"
-      - heroku/deploy-via-git
 orbs:
-  docker: circleci/docker@1.0.0
-  heroku: circleci/heroku@1.0.1
+  docker: circleci/docker@1.2.1
+version: 2.1
 workflows:
-  deploy:
+  build-docker-image-only:
     jobs:
       - docker/publish:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-          tag: 'latest'
-    heroku_deploy:
-      jobs:
-        - deploy
+          deploy: false
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME

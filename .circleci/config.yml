@@ -11,8 +11,14 @@ jobs:
             What you do inbetween is up to you!"
       - heroku/deploy-via-git
 orbs:
+  docker: circleci/docker@1.0.0
   heroku: circleci/heroku@1.0.1
 workflows:
-  heroku_deploy:
+  deploy:
     jobs:
-      - deploy
+      - docker/publish:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          tag: 'latest'
+    heroku_deploy:
+      jobs:
+        - deploy

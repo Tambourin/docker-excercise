@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-console.log("Start docker-excercise");
+console.log("Sstart docker-excercise");
 
 app.get("/ping", (request, response) => {
   response.send("pong ping pong");  

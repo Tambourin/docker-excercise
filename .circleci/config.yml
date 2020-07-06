@@ -13,3 +13,4 @@ jobs:
             heroku -v
             ls -l
             docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+            heroku container:push web --app docker-excercise2

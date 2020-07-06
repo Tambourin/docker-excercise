@@ -9,4 +9,6 @@ jobs:
           name: The First Step
           command: |
             echo 'Hello World!'
+            sudo apt-get update
+            sudo apt-get install -g -y curl
             curl https://cli-assets.heroku.com/install.sh | sh

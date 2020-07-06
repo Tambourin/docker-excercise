@@ -7,4 +7,4 @@ app.get("/ping", (request, response) => {
   response.send("pong ping pong");  
 });
 
-app.listen(8000);
+app.listen(process.env.PORT ? process.env.PORT : 8000);
